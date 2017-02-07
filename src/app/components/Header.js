@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {IndexLink, Link} from 'react-router';
 
 export default class Header extends Component {
 	render() {
@@ -7,14 +7,14 @@ export default class Header extends Component {
 			<nav className="navbar navbar-default">
 			  <div className="container-fluid">
 			    <div className="navbar-header">
-			      <a className="navbar-brand" href="#">WebSiteName</a>
+			    <Link className="navbar-brand" to={'/'}>WebSiteName</Link>
 			    </div>
 			    <ul className="nav navbar-nav">
-			      <li className="active"><a href="/home">Home</a></li>
-			      <li><a href="/page-1">Page 1</a></li>
-			      <li><a href="/page-2">Page 2</a></li>
-			      <li><a href="page-3">Page 3</a></li>
-			    </ul>
+			      <li activeClassName={"active"} onlyActiveOnIndex={true}><Link to={'/'}>Home</Link></li>
+			      <li activeClassName={"active"}><Link to={'/about'}>About</Link></li>
+			      <li activeClassName={"active"}><Link to={'/events'}>Events</Link></li>
+			      <li activeClassName={"active"}><Link to={'/contact'}>Contact</Link></li>
+			     </ul>
 			  </div>
 			</nav>
 		);

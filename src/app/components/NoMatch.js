@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 
-class Home extends Component {
+export default class Event extends Component {
 
 	render() {
 		return(
 			<div>
-				<h3>Home</h3>
+				<h3>No match</h3>
 			</div>
 		);
 	}
-	
 }
-
-export default Home;
