@@ -2,6 +2,7 @@ console.log("It works!");
 
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { Router, Route, Link, browserHistory, IndexRoute } from "react-router";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -11,6 +12,10 @@ class App extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			bannerTitle: "Banner Title",
+			homeMounted: true
+		};
 	}
 	componentDidMount() {
 		this.fetchEvents();
@@ -19,7 +24,23 @@ class App extends Component {
 		return [];
 	}
 
+	onChangeHomeMounted() {
+		this.setState({
+			homeMounted: !this.state.homeMounted
+		});
+	}
+
 	render() {
+		return (
+			<Router history = {browserHistory}>
+			  <Route path = "{events}" component = {Events} />
+			  <Route path = "{home}" component = {Home} />
+			</Router>
+		);
+
+	}
+
+	render2() {
 		let events = {};
 		let categories = [
 			{
@@ -55,12 +76,30 @@ class App extends Component {
 				"short_name_localized": "Community"
 			}
 		];
+		var hmp = "";
+		if ( this.state.homeMounted) {
+			hmp = (
+				<Home 
+					greet={this.onGreet} 
+					changeBannerTitle={this.onChangeBannerTitle.bind(this)}
+					initialTitle={this.state.bannerTitle}
+					/>
+					);
+		}
+
 		return(
 			<div className="container">
+				<div className="row">
+					{hmp}
+				</div>
 
 				<div className="row">
-					<Home />
+					<div className="well well-sm">
+						{this.state.bannerTitle}
+					</div>
 				</div>
+
+				<button onClick={() => this.onChangeHomeMounted()} type="button" className="btn btn-primary btn-md">(Un)Mount Home Comp</button>
 
 				<div className="row">
 					<Events events={events} categories={categories}/>
@@ -69,6 +108,16 @@ class App extends Component {
 				
 			</div>
 		);
+	}
+
+	onGreet() {
+		alert("Hi")
+	}
+
+	onChangeBannerTitle(newTitle) {
+		this.setState({
+			bannerTitle: newTitle
+		});
 	}
 }
 
