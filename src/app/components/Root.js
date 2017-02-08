@@ -7,13 +7,14 @@ import Footer from './Footer';
 class Root extends Component {
    render() {
       return (
-         <div className='container'>
-            <Header />
+      	<main>
+	      	<Header />
+					<div className='container'>
+					{this.props.children}
+					</div>
+					<Footer />
+      	</main>
 				
-           {this.props.children}
-
-            <Footer />
-         </div>
       )
    }
 }
