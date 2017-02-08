@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 
 
-export default const StatelessHeader = (props) => {
+const StatelessHeader = (props) => {
 	render() {
 		return(
 			<nav className="navbar navbar-default">
@@ -24,3 +24,5 @@ export default const StatelessHeader = (props) => {
 		);
 	}
 }
+
+export default StatelessHeader;
