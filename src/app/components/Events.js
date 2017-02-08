@@ -6,7 +6,7 @@ class Events extends Component {
 		return(
 			<div>
 				<h3>Events</h3>
-				<Link to={'/event/12'}>Event 12</Link>
+				<Link to={'/events/12'}>Event 12</Link>
 			</div>
 		);
 	}

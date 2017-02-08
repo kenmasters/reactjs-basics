@@ -18,11 +18,10 @@ class App extends Component {
 		return (
 			<Router history={browserHistory}>
 				<Route path="/" component={Root}>
-					<IndexRoute component = {Home} />
+					<IndexRoute component= {Home} />
 					<Route path="about" component={About} />
-					<Route path="events" component={Events} >
-						<Route path="event(/:id)" component={Event} />
-					</Route>
+					<Route path="events" component={Events} />
+					<Route path="events/:id" component={Event} />
 					<Route path="contact" component={Contact} />
 					<Route path="*" component={NoMatch}/>
 				</Route>

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {IndexLink, Link} from 'react-router';
+import NavLink from './NavLink';
 
-export default class Header extends Component {
+class Header extends Component {
 	render() {
 		return(
 			<nav className="navbar navbar-default">
@@ -10,13 +11,15 @@ export default class Header extends Component {
 			    <Link className="navbar-brand" to={'/'}>WebSiteName</Link>
 			    </div>
 			    <ul className="nav navbar-nav">
-			      <li activeClassName={"active"} onlyActiveOnIndex={true}><Link to={'/'}>Home</Link></li>
-			      <li activeClassName={"active"}><Link to={'/about'}>About</Link></li>
-			      <li activeClassName={"active"}><Link to={'/events'}>Events</Link></li>
-			      <li activeClassName={"active"}><Link to={'/contact'}>Contact</Link></li>
+			      <NavLink to='/'>Home</NavLink>
+			      <NavLink to='/events'>Event</NavLink>
+			      <NavLink to='/contact'>Contact</NavLink>
+			      <NavLink to='/about'>About</NavLink>
 			     </ul>
 			  </div>
 			</nav>
 		);
 	}
 }
+
+export default Header;
