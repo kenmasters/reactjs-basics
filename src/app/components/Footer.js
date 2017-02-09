@@ -5,8 +5,10 @@ const Footer = (props) => {
 	let d = new Date();
 	let y = d.getFullYear();
 	return(
+
 		<div className="bottom-bar">
             <div className="container">
+            	<hr/>
                 <small className="copyright">Copyright @ {y}</small>                
             </div>
         </div>
