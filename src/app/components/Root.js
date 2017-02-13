@@ -9,10 +9,10 @@ class Root extends Component {
       return (
       	<main>
 	      	<Header />
-					<div className='container'>
-					{this.props.children}
-					</div>
-					<Footer />
+			<div className='container'>
+				{this.props.children}
+			</div>
+			<Footer />
       	</main>
 				
       )
