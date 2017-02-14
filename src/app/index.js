@@ -1,5 +1,6 @@
 console.log("It works!");
 
+
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
@@ -15,6 +16,7 @@ import { createStore } from 'redux';
 
 import User from './components/User';
 import Main from './components/Main';
+import GithubApi from './components/GithubApi';
 
 
 const initialState = {
@@ -46,6 +48,8 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
+// Register some action
+// action type is required and must be unique
 const add = (num) => {
 	return {
 		type: 'ADD',
@@ -86,13 +90,13 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <div className="container">
-                <Main changeUsername={this.changeUsername.bind(this)}/>
-                <User username={this.state.username}/>
-            </div>
-        );
+    	return (
+    		<div>
+    			<GithubApi userName='niljr'/>
+    		</div>
+    	);
     }
+
 }
 
 // class App extends Component {
