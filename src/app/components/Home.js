@@ -12,8 +12,11 @@ class Home extends Component {
 		return(
 			<div>
 				<h3>Home</h3>
+				<hr />
 				<button type="button" className="btn btn-default" onClick={this.props.route._handleButton}>Change name</button>
 				<User name={this.props.route.name} />
+				<hr />
+				{/*Comments Section*/}
 				<Comments />
 			</div>
 		);

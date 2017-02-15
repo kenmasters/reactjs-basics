@@ -16,11 +16,11 @@ class Header extends Component {
 			    	<Link className="navbar-brand" to={'/'}>ReactBasics</Link>
 			    </div>
     			<div className="collapse navbar-collapse" id="myNavbar">
-	    			<ul className="nav navbar-nav">
+	    			<ul className="nav navbar-nav navbar-right">
 	    				<NavLink to='/'>Home</NavLink>
 	    				<NavLink to='/events'>Events</NavLink>
-	    				<NavLink to='/contact'>Contact</NavLink>
 	    				<NavLink to='/about'>About</NavLink>
+	    				<NavLink to='/contact'>Contact</NavLink>
 	    			</ul>
     			</div>
 			  </div>

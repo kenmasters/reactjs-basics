@@ -6,7 +6,6 @@ import React, { Component } from "react";
 
 
 const StatelessHeader = (props) => {
-	render() {
 		return(
 			<nav className="navbar navbar-default">
 			  <div className="container-fluid">
@@ -22,7 +21,6 @@ const StatelessHeader = (props) => {
 			  </div>
 			</nav>
 		);
-	}
 }
 
 export default StatelessHeader;

@@ -83,8 +83,7 @@ class Comments extends Component {
 
 export default Comments;
 
-const Comment = props =>  {
-	let comment = props.comment;
+const Comment = ({comment}) =>  {
 	let avatarUri = `https://api.adorable.io/avatars/60/${comment.email}.png`;
 	// const like = (event) => {
 	// 	alert('I like')
