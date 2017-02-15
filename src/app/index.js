@@ -29,17 +29,17 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD":
             state = {
-                ...state,
-                score: state.score + action.num,
-                lastValues: [...state.lastValues, action.num]
+                ...state, // es6 spread operator
+                score: state.score + action.payload,
+                lastValues: [...state.lastValues, action.payload]
             };
 
             break;
         case "SUBTRACT":
             state = {
-                ...state,
-                score: state.score - action.num,
-                lastValues: [...state.lastValues, action.num]
+                ...state, // es6 spread operator
+                score: state.score - action.payload,
+                lastValues: [...state.lastValues, action.payload]
             };
             break;
     }
@@ -50,17 +50,17 @@ const store = createStore(reducer);
 
 // Register some action
 // action type is required and must be unique
-const add = (num) => {
+const add = (payload) => {
 	return {
 		type: 'ADD',
-		num: num
+		payload: payload
 	}
 }
 
-const subtract = (num) => {
+const subtract = (payload) => {
 	return {
 		type: 'SUBTRACT',
-		num: num
+		payload: payload
 	}
 }
 
