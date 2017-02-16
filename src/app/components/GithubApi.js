@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const urlForUserName = username => `https://api.github.com/users/${username}`;
+const randomUserUrl = 'https://randomuser.me/api/?results=10';
 
 class GithubApi extends Component {
 	constructor(props) {

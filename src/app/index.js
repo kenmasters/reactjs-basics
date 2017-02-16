@@ -1,9 +1,11 @@
+// Reference : https://github.com/mschwarzmueller/reactjs-redux-basics
 console.log("It works!");
 
 
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 // import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
 // import Root from './components/Root';
@@ -18,19 +20,15 @@ import User from './components/User';
 import Main from './components/Main';
 import GithubApi from './components/GithubApi';
 
-
-const initialState = {
-    score: 1,
-    lastValues: [],
-    username: "Max"
-};
-
-const reducer = (state = initialState, action) => {
+const mathReducer = (state = {
+	result: 1,
+	lastValues: []
+}, action) => {
     switch (action.type) {
         case "ADD":
             state = {
                 ...state, // es6 spread operator
-                score: state.score + action.payload,
+                result: state.result + action.payload,
                 lastValues: [...state.lastValues, action.payload]
             };
 
@@ -38,7 +36,7 @@ const reducer = (state = initialState, action) => {
         case "SUBTRACT":
             state = {
                 ...state, // es6 spread operator
-                score: state.score - action.payload,
+                result: state.result - action.payload,
                 lastValues: [...state.lastValues, action.payload]
             };
             break;
@@ -46,7 +44,46 @@ const reducer = (state = initialState, action) => {
     return state;
 };
 
-const store = createStore(reducer);
+const userReducer = (state = {
+	name: 'Maxim', 
+	age: 27
+	}, action) => {
+    switch (action.type) {
+        case "SET_NAME":
+            state = {
+                ...state, // es6 spread operator
+                name: action.payload
+            };
+            break;
+        case "SET_AGE":
+            state = {
+                ...state, // es6 spread operator
+                age: action.payload
+            };
+            break;
+    }
+    return state;
+};
+
+// create myLogger Middleware
+// note: this pattern sequence is important , this is a chain of fat arrow functions
+// the call `next(action)` is needed inorder to continue to reducers.
+const myLogger = store => next => action => {
+	// console.log('Logged action: ', action);
+	next(action);
+};
+
+// Note: We should combine all our reducers into an object before passing it to the store.
+let reducers = {
+	mathReducer: mathReducer,
+	userReducer: userReducer
+}
+
+const store = createStore(
+	combineReducers(reducers),	// reducers
+	{}, 						// initial state
+	applyMiddleware(myLogger, logger())	// middlewares
+);
 
 // Register some action
 // action type is required and must be unique
@@ -64,14 +101,30 @@ const subtract = (payload) => {
 	}
 }
 
+const setName = (payload) => {
+	return {
+		type: 'SET_NAME',
+		payload: payload
+	}
+}
+
+const setAge = (payload) => {
+	return {
+		type: 'SET_AGE',
+		payload: payload
+	}
+}
+
 // Observe state changes
 store.subscribe(() => {
-    console.log("Store updated!", store.getState());
+    // console.log("Store updated!", store.getState());
 });
 
 store.dispatch(add(100));
 store.dispatch(add(10));
 store.dispatch(subtract(80));
+store.dispatch(setName('Julia'));
+store.dispatch(setAge(30));
 
 
 
@@ -92,12 +145,27 @@ class App extends React.Component {
     render() {
     	return (
     		<div>
-    			<GithubApi userName='niljr'/>
+    			{/*
+				<Sample myprop='fooo'>
+					<h1>Helllo</h1>
+				</Sample>
+    			*/}
+    			<GithubApi userName='vakila'/>
     		</div>
     	);
     }
 
 }
+
+// Stateless component with props and children
+const Sample = ({...props, children}) => {
+	return (
+		<div>
+			{props.myprop}
+			{children}
+		</div>
+	)
+};
 
 // class App extends Component {
 // 	constructor(props) {
