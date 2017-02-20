@@ -35,7 +35,9 @@ class Events extends Component {
 
 	render() {
 		return (
+			<div>
 			<pre>Temporary disabled.</pre>
+			</div>
 		)
 	}
 

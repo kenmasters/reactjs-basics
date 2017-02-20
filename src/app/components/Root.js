@@ -10,7 +10,9 @@ class Root extends Component {
       	<main>
 	      	<Header />
 			<div className='container'>
+			
 				{this.props.children}
+			
 			</div>
 			<Footer />
       	</main>

@@ -169,19 +169,7 @@ store.dispatch(setAge(30));
 // };
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			name: 'Maxim'
-		};
-	}
-
-	_changeName() {
-		this.setState({
-			name: 'newName'
-		});
-	}
-
+	
 	render() {
 		return (
             <Provider store={store}>

@@ -9,21 +9,24 @@ class Event extends Component {
 			eventDes: '',
 		};
 	}
+
+
 	componentDidMount() {
-		let evtId = this.props.params.id;
-		let evtApiUrl = `https://www.eventbriteapi.com/v3/events/${evtId}/?token=VN5HD67GPHGWMHLFMJLL`;
-		fetch(evtApiUrl).then( res => {
-			return res.json();
-		}).then( json => {
-			const event = json;
-			this.setState({
-				event: event,
-				eventName: event.name.text,
-				eventDes: event.description.text,
-			});
-		}).catch(err =>  {
-		  console.log("Booo");
-		});
+		this._fetchEvents();
+		// let evtId = this.props.params.id;
+		// let evtApiUrl = `https://www.eventbriteapi.com/v3/events/${evtId}/?token=VN5HD67GPHGWMHLFMJLL`;
+		// fetch(evtApiUrl).then( res => {
+		// 	return res.json();
+		// }).then( json => {
+		// 	const event = json;
+		// 	this.setState({
+		// 		event: event,
+		// 		eventName: event.name.text,
+		// 		eventDes: event.description.text,
+		// 	});
+		// }).catch(err =>  {
+		//   console.log("Booo");
+		// });
 
 	}
 	render() {
@@ -37,6 +40,32 @@ class Event extends Component {
 				<p>{this.state.eventDes}</p>
 			</div>
 		);
+	}
+
+	_fetchEvents = () => {
+	
+		let evtId = this.props.params.id;
+		let evtApiUrl = `https://www.eventbriteapi.com/v3/events/${evtId}`;
+
+		fetch(evtApiUrl, {
+			mode: 'no-cors',
+			 headers: {
+			    'Accept': 'application/json',
+			    'Content-Type': 'application/json',
+			    'Authorization': 'Bearer VN5HD67GPHGWMHLFMJLL'
+			  }
+		}).then( res => {
+			return res.json();
+		}).then( json => {
+			const event = json;
+			this.setState({
+				event: event,
+				eventName: event.name.text,
+				eventDes: event.description.text,
+			});
+		}).catch(err =>  {
+		  console.log("Booo");
+		});
 	}
 	
 }
