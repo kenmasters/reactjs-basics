@@ -7,7 +7,8 @@
     "start": "npm run build",
     "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback",
     "build:prod": "webpack -p && cp src/index.html dist/index.html",
-    "build:localhost": "webpack -p && cp -r dist/* C:\\xampp\\htdocs\\reactjs-basics"
+    "build:win": "webpack -p && cp -r dist/* C:\\xampp\\htdocs\\reactjs-basics",
+    "build:mac": "webpack -p && cp -r dist/* /Applications/XAMPP/xamppfiles/htdocs/reactjs-basics"
   },
   "keywords": [],
   "author": "",
