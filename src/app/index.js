@@ -1,25 +1,13 @@
 // Reference : https://github.com/mschwarzmueller/reactjs-redux-basics
 console.log("It works!!!");
 
-
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
-import Root from './components/Root';
-import Home from './components/Home';
-import About from './components/About';
-import Events from './components/Events';
-import Contact from './components/Contact';
-import Event from './components/Event';
-import NoMatch from './components/NoMatch';
-
-import User from './components/User';
-import Main from './components/Main';
-import GithubApi from './components/GithubApi';
+import App from './components/App';
 
 const mathReducer = (state = {
 	result: 1,
@@ -124,73 +112,16 @@ store.subscribe(() => {
 store.dispatch(add(100));
 store.dispatch(add(10));
 store.dispatch(subtract(80));
-store.dispatch(setName('Julia'));
-store.dispatch(setAge(30));
+// store.dispatch(setName('Julia'));
+// store.dispatch(setAge(30));
 
-
-
-// class App extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             username: "Max"
-//         };
-//     }
-
-//     changeUsername(newName) {
-//         this.setState({
-//             username: newName
-//         });
-//     }
-
-//     render() {
-//     	return (
-//     		<div>
-//     			{/*
-// 				<Sample myprop='fooo'>
-// 					<h1>Helllo</h1>
-// 				</Sample>
-//     			*/}
-//     			<GithubApi userName='vakila'/>
-//     		</div>
-//     	);
-//     }
-
-// }
-
-// Stateless component with props and children
-// const Sample = ({...props, children}) => {
-// 	return (
-// 		<div>
-// 			{props.myprop}
-// 			{children}
-// 		</div>
-// 	)
-// };
-
-class App extends Component {
-	
-	render() {
-		return (
-            <Provider store={store}>
-                <Router history={browserHistory}>
-                    <Route path="/" component={Root}>
-                        <IndexRoute component={Home}/>
-                        <Route path="about" component={About} />
-                        <Route path="events" component={Events} />
-                        <Route path="events/:id" component={Event} />
-                        <Route path="contact" component={Contact} />
-                        <Route path="*" component={NoMatch}/>
-                    </Route>
-              </Router>
-            </Provider>
-			
-		);
-	}
-	
-}
+const ReactApp = () => (
+	<Provider store={store}>
+		<App />    
+	</Provider>
+);
 
 render(
-	<App />,
+	<ReactApp />,
 	document.getElementById('app')
 );

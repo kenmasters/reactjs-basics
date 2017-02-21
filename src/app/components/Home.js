@@ -16,8 +16,7 @@ class Home extends Component {
 				<h3>Home</h3>
 				<hr />
 				<button type="button" className="btn btn-default" onClick={this.props.route._handleButton}>Change name</button>
-				<User name={this.props.route.name} />
-				<User name={this.props.user} />
+				<User name={this.props.user.name} />
 				<hr />
 				{/*Comments Section*/}
 				<Comments />
@@ -27,7 +26,7 @@ class Home extends Component {
 	
 }
 
-export default Home;
+// export default Home;
 
 const mapStateToProps = state => {
 	return {
@@ -37,5 +36,5 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = action => {};
 
-connect(mapStateToProps, mapDispatchToProps);
+export default connect(mapStateToProps)(Home)
 
