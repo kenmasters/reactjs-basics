@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, BrowserRouter,Route, Link, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
 import Root from './Root';
 import Home from './Home';
