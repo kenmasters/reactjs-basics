@@ -14,7 +14,6 @@ const cachedFetch = (url, options) => {
   let cacheKey = url
   let cached = localStorage.getItem(cacheKey)
   let whenCached = localStorage.getItem(cacheKey + ':ts')
-  console.log((Date.now() - whenCached) / 1000)
   if (cached !== null && whenCached !== null) {
     // it was in sessionStorage! Yay!
     // Even though 'whenCached' is a string, this operation
@@ -70,14 +69,10 @@ class Events extends Component {
             forced_login         : false
 
 		};
-
-		console.log(this.props.match);
 	}
+	
 	componentDidMount() {
-		// if ( hascached ) {
-		// 	this.setState({events: response.events});
-		// 	return;
-		// }
+	
 		let evtApiUrl = 'https://www.eventbriteapi.com/v3/events/?token=VN5HD67GPHGWMHLFMJLL'
 		// fetch('http://codepen.io/jobs.json').then( res => {
 		// fetch(evtApiUrl).then( response => {
@@ -94,7 +89,7 @@ class Events extends Component {
 		})
 		.then( response => response.json())
 		.then( response => {
-			// console.log(response);
+	
 			this.setState({
 				results: response,
 				events: response.events

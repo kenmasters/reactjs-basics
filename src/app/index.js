@@ -64,8 +64,8 @@ const myLogger = store => next => action => {
 
 // Note: We should combine all our reducers into an object before passing it to the store.
 let reducers = {
-	mathReducer: mathReducer,
-	userReducer: userReducer
+	math: mathReducer,
+	user: userReducer
 }
 
 const store = createStore(
@@ -90,12 +90,12 @@ const subtract = (payload) => {
 	}
 }
 
-const setName = (payload) => {
-	return {
-		type: 'SET_NAME',
-		payload: payload
-	}
-}
+// const setName = (payload) => {
+// 	return {
+// 		type: 'SET_NAME',
+// 		payload: payload
+// 	}
+// }
 
 const setAge = (payload) => {
 	return {
@@ -109,9 +109,9 @@ store.subscribe(() => {
     // console.log("Store updated!", store.getState());
 });
 
-store.dispatch(add(100));
-store.dispatch(add(10));
-store.dispatch(subtract(80));
+// store.dispatch(add(100));
+// store.dispatch(add(10));
+// store.dispatch(subtract(80));
 // store.dispatch(setName('Julia'));
 // store.dispatch(setAge(30));
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
 
+import {setName} from '../actions';
 import Comments from './Comments';
 import User from './User';
 
@@ -15,13 +16,26 @@ class Home extends Component {
 			<div>
 				<h3>Home</h3>
 				<hr />
-				<button type="button" className="btn btn-default" onClick={this.props.route._handleButton}>Change name</button>
+				<div className="form-inline">
+					<div className="form-group">
+						<input type="text" className="form-control" onBlur={this._handleBlur} defaultValue={this.props.user.name}/>
+					</div>
+					<div className="form-group">
+						<button type="button" className="btn btn-default" >Change name</button>
+					</div>
+				</div>
+				
 				<User name={this.props.user.name} />
 				<hr />
 				{/*Comments Section*/}
 				<Comments />
 			</div>
 		);
+	}
+
+
+	_handleBlur = (event) => {
+		this.props.setName(event.target.value);
 	}
 	
 }
@@ -30,11 +44,17 @@ class Home extends Component {
 
 const mapStateToProps = state => {
 	return {
-		user: state.userReducer
+		user: state.user
 	};
 };
 
-const mapDispatchToProps = action => {};
+const mapDispatchToProps = dispatch => {
+	return {
+		setName: name => {
+			dispatch(setName(name));
+		}
+	};
+};
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
